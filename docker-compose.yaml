@@ -1,0 +1,12 @@
+version: '3.9'
+
+services:
+  db-crm:
+    restart: always
+    image: postgres:16-alpine
+    container_name: effective_mobile_task2
+    env_file:
+      - path: .env
+        required: true
+    ports:
+      - '5434:5432'
