@@ -27,5 +27,5 @@ export const typeOrmAsyncConfig: TypeOrmModuleAsyncOptions = {
     return dbConfig;
   },
 };
-
-export default new DataSource(dbConfig);
+export const dataSource = new DataSource(dbConfig);
+dataSource.initialize();

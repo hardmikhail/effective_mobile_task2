@@ -14,10 +14,9 @@ export class User {
   @Column()
   age: number;
 
-  //Добавить enum
   @Column()
   gender: string;
 
   @Column()
-  healthProblems: boolean;
+  problems: boolean;
 }

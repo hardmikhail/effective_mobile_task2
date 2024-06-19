@@ -5,20 +5,19 @@ export class Add1000Users1718740837786 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     const users = [];
 
-    for (let i = 1; i <= 1000; i++) {
+    for (let i = 1; i <= 1_000_000; i++) {
       const firstName = `firstName${i}`;
       const lastName = `lastName${i}`;
       const age = randomInt(99);
-      const gender = 'male' ? i % 3 == 0 : 'female';
-      const healthProblems = true ? i % 3 == 0 : false;
+      const gender = i % 2 == 0 ? 'male' : 'female';
+      const problems = i % 3 == 0 ? true : false;
       users.push(
-        `('${firstName}', '${lastName}', '${age}', ${gender}, ${healthProblems})`,
+        `('${firstName}', '${lastName}', '${age}', '${gender}', '${problems}')`,
       );
     }
-    // await queryRunner.query(`CREATE TABLE "postgres" ("id" SERIAL NOT NULL, "firstName" character varying NOT NULL, "lastName" character varying NOT NULL, "age" integer NOT NULL, "gender" character varying NOT NULL, "healthProblems" boolean NOT NULL, CONSTRAINT "PK_cace4a159ff9f2512dd42373760" PRIMARY KEY ("id"))`);
 
     await queryRunner.query(
-      `INSERT INTO "user" ("firstName", "lastName", "age", "gender", "healthProblems") VALUES ${users.join(', ')}`,
+      `INSERT INTO "user" ("firstName", "lastName", "age", "gender", "problems") VALUES ${users.join(', ')}`,
     );
   }
 
